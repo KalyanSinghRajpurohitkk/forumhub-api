@@ -3,7 +3,6 @@
 // Student id : 9021722
 // Final Project :  ForumHub API
 
-
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db";
@@ -17,7 +16,7 @@ dotenv.config();
 
 const app = express();
 
-// CONNECT DATABASE 
+// Connect to the database
 connectDB();
 
 app.use(express.json());
