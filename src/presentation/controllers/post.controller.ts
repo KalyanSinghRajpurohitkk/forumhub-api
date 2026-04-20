@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Post } from "../../infrastructure/models/post.model";
 import { logger } from "../../config/logger";
 
-// CREATE POST
+// Create post
 export const createPost = async (req: any, res: Response) => {
   try {
     const { title, content } = req.body;
@@ -19,7 +19,7 @@ export const createPost = async (req: any, res: Response) => {
   }
 };
 
-// GET ALL POSTS
+// Get all the posts
 export const getPosts = async (req: Request, res: Response) => {
   try {
     const posts = await Post.find().populate("user", "username email");
@@ -30,7 +30,7 @@ export const getPosts = async (req: Request, res: Response) => {
   }
 };
 
-// UPDATE POST
+// Update the post if u want
 export const updatePost = async (req: any, res: Response) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -39,7 +39,7 @@ export const updatePost = async (req: any, res: Response) => {
       return res.status(404).json({ message: "Post not found" });
     }
 
-    // CHECK OWNER OR SUPERUSER
+    // check who own or superuser as well
     if (
       post.user.toString() !== req.user.id &&
       req.user.role !== "superuser"
@@ -58,7 +58,7 @@ export const updatePost = async (req: any, res: Response) => {
   }
 };
 
-// DELETE POST
+// Delete a post
 export const deletePost = async (req: any, res: Response) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -67,7 +67,7 @@ export const deletePost = async (req: any, res: Response) => {
       return res.status(404).json({ message: "Post not found" });
     }
 
-    // CHECK OWNER OR SUPERUSER
+    // check who own or superuser as well
     if (
       post.user.toString() !== req.user.id &&
       req.user.role !== "superuser"
@@ -83,7 +83,7 @@ export const deletePost = async (req: any, res: Response) => {
   }
 };
 
-// LIKE / UNLIKE POST
+// Like or unlike the post
 export const likePost = async (req: any, res: Response) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -94,7 +94,7 @@ export const likePost = async (req: any, res: Response) => {
 
     const userId = req.user.id;
 
-    // CHECK IF ALREADY LIKED
+    // check if already liked or not
     const alreadyLiked = post.likes.includes(userId);
 
     if (alreadyLiked) {
@@ -115,7 +115,7 @@ export const likePost = async (req: any, res: Response) => {
   }
 };
 
-// ADD COMMENT
+// Add a comment
 export const addComment = async (req: any, res: Response) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -139,7 +139,7 @@ export const addComment = async (req: any, res: Response) => {
   }
 };
 
-// DELETE COMMENT
+// Delete a comment
 export const deleteComment = async (req: any, res: Response) => {
   try {
     const post = await Post.findById(req.params.postId);
@@ -156,7 +156,7 @@ const comment = post.comments.find(
       return res.status(404).json({ message: "Comment not found" });
     }
 
-    // OWNER OR ADMIN
+    // owner
     if (
       comment.user.toString() !== req.user.id &&
       req.user.role !== "superuser"

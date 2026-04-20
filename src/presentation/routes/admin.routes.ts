@@ -5,7 +5,7 @@ import { authorize } from "../../middlewares/role.middleware";
 
 const router = express.Router();
 
-// ADMIN ONLY
+// Admin only have access
 router.get("/analytics", protect, authorize("admin"), getAnalytics);
 
 export default router;

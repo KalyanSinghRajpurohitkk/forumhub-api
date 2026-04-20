@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { User } from "../../infrastructure/models/user.model";
 import { logger } from "../../config/logger";
 
-// REGISTER
+// Registaration
 export const register = async (req: Request, res: Response) => {
   try {
     const { username, email, password } = req.body;
@@ -28,7 +28,7 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
-// LOGIN
+// Login
 export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
