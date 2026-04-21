@@ -111,7 +111,6 @@ describe("Post Controller", () => {
     (Post.findById as jest.Mock).mockResolvedValue(null);
 
     await postController.deletePost(req, res);
-
     expect(res.status).toHaveBeenCalledWith(404);
   });
 

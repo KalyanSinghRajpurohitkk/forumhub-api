@@ -98,12 +98,12 @@ export const likePost = async (req: any, res: Response) => {
     const alreadyLiked = post.likes.includes(userId);
 
     if (alreadyLiked) {
-      // UNLIKE
+      // UNLIKE It
       post.likes = post.likes.filter(
         (id) => id.toString() !== userId
       );
     } else {
-      // LIKE
+      // LIKE It
       post.likes.push(userId);
     }
 
